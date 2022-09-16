@@ -4,7 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".activity.EditarProdutoActivity"
+    tools:context=".activity.ItemActivity"
     android:layout_margin="@dimen/margem"
     android:orientation="vertical">
 
@@ -12,26 +12,54 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         style="?android:attr/textAppearanceMedium"
-        android:text="@string/txt_nome" />
+        android:text="@string/txt_titulo" />
 
     <EditText
-        android:id="@+id/edt_nome"
+        android:id="@+id/edt_titulo"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:inputType="textCapSentences" />
+        android:inputType="textCapSentences"
+        tools:ignore="Autofill,LabelFor" />
 
     <TextView
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginTop="30dp"
-        android:text="@string/txt_valor"
+        android:text="@string/txt_prioridade"
         style="?android:attr/textAppearanceMedium" />
 
     <EditText
-        android:id="@+id/edt_valor"
+        android:id="@+id/edt_prioridade"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:inputType="numberDecimal" />
+        android:inputType="numberDecimal"
+        tools:ignore="Autofill,LabelFor" />
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="30dp"
+        android:text="@string/txt_descricao"
+        style="?android:attr/textAppearanceMedium" />
+
+    <EditText
+        android:id="@+id/edt_descricao"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:inputType="text"
+        tools:ignore="Autofill,LabelFor" />
+
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="30dp"
+        android:text="@string/txt_cor"
+        style="?android:attr/textAppearanceMedium" />
+
+    <Spinner
+        android:id="@+id/spn_cor"
+        android:layout_width="match_parent"
+        android:layout_height="40dp"
+        />
 
     <LinearLayout
         style="?android:attr/buttonBarStyle"

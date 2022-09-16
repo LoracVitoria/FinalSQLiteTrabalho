@@ -1,4 +1,4 @@
-package com.example.bancodedados;
+package com.example.finalsqlite;
 
 import org.junit.Test;
 

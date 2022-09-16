@@ -1,4 +1,4 @@
-package com.example.bancodedados.dialog;
+package com.example.finalsqlite.dialog;
 
 import android.app.Dialog;
 import android.content.Context;
@@ -10,18 +10,18 @@ import androidx.annotation.Nullable;
 import androidx.appcompat.app.AlertDialog;
 import androidx.fragment.app.DialogFragment;
 
-import com.example.bancodedados.data.Produto;
+import com.example.finalsqlite.data.Item;
 
 public class DeleteDialog extends DialogFragment implements DialogInterface.OnClickListener{
 
-    private Produto produto;
+    private Item item;
     private OnDeleteListener listener;
 
     @NonNull
     @Override
     public Dialog onCreateDialog(@Nullable Bundle savedInstanceState) {
         AlertDialog.Builder builder = new AlertDialog.Builder(getActivity());
-        builder.setMessage("Deseja excluir o produto "  + produto.getNome() + "?");
+        builder.setMessage("Deseja excluir o item "  + item.getTitulo() + "?");
         builder.setPositiveButton("Sim", this);
         builder.setNegativeButton("Não", this);
         return builder.create();
@@ -30,12 +30,12 @@ public class DeleteDialog extends DialogFragment implements DialogInterface.OnCl
     @Override
     public void onClick(DialogInterface dialogInterface, int i) {
         if (i == DialogInterface.BUTTON_POSITIVE) {
-            listener.onDelete(produto);
+            listener.onDelete(item);
         }
     }
 
-    public void setProduto(Produto produto) {
-        this.produto = produto;
+    public void setItem(Item item) {
+        this.item = item;
     }
 
     @Override
@@ -49,6 +49,6 @@ public class DeleteDialog extends DialogFragment implements DialogInterface.OnCl
     }
 
     public interface OnDeleteListener {
-        public void onDelete(Produto produto);
+        public void onDelete(Item item);
     }
 }

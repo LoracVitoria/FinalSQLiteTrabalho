@@ -1,4 +1,4 @@
-package com.example.bancodedados.data;
+package com.example.finalsqlite.data;
 
 import android.content.Context;
 import android.database.sqlite.SQLiteDatabase;
@@ -6,13 +6,13 @@ import android.database.sqlite.SQLiteOpenHelper;
 
 public class DBHelper extends SQLiteOpenHelper {
 
-    public static final String DB_NAME = "produtosdb";
+    public static final String DB_NAME = "itemdb";
     public static final int DB_VERSION = 1;
 
-    private static final String SQL_DROP = "DROP TABLE IF EXISTS " + ProdutosContract.TABLE_NAME;
+    private static final String SQL_DROP = "DROP TABLE IF EXISTS " + ItensContract.TABLE_NAME;
     private static final String SQL_CREATE = String.format(
             "CREATE TABLE %s (%s INTEGER PRIMARY KEY AUTOINCREMENT, " +
-                    "%s TEXT NOT NULL, %s DOUBLE NOT NULL)", ProdutosContract.TABLE_NAME, ProdutosContract.Columns._ID, ProdutosContract.Columns.NOME, ProdutosContract.Columns.VALOR);
+                    "%s TEXT NOT NULL, %s INTEGER NOT NULL, %s TEXT, %s TEXT)", ItensContract.TABLE_NAME, ItensContract.Columns._ID, ItensContract.Columns.TITULO, ItensContract.Columns.PRIORIDADE, ItensContract.Columns.DESCRICAO, ItensContract.Columns.COR);
 
     private static DBHelper instance;
 

@@ -1,4 +1,4 @@
-package com.example.bancodedados.activity;
+package com.example.finalsqlite.activity;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
@@ -12,19 +12,22 @@ import android.view.View;
 import android.widget.AdapterView;
 import android.widget.ListView;
 
-import com.example.bancodedados.R;
-import com.example.bancodedados.adapter.ProdutoAdapter;
-import com.example.bancodedados.data.Produto;
-import com.example.bancodedados.data.ProdutoDAO;
-import com.example.bancodedados.dialog.DeleteDialog;
+import com.example.finalsqlite.R;
+import com.example.finalsqlite.adapter.ItemAdapter;
+import com.example.finalsqlite.data.Item;
+import com.example.finalsqlite.data.ItemDAO;
+import com.example.finalsqlite.dialog.DeleteDialog;
+import com.google.android.material.floatingactionbutton.FloatingActionButton;
 
+import java.lang.reflect.GenericArrayType;
 import java.util.List;
 
-public class MainActivity extends AppCompatActivity implements AdapterView.OnItemClickListener, AdapterView.OnItemLongClickListener, DeleteDialog.OnDeleteListener {
+public class MainActivity extends AppCompatActivity implements AdapterView.OnItemClickListener, AdapterView.OnItemLongClickListener, DeleteDialog.OnDeleteListener, View.OnClickListener {
 
     private ListView lista;
-    private ProdutoAdapter adapter;
-    private ProdutoDAO produtoDAO;
+    private ItemAdapter adapter;
+    private ItemDAO itemDAO;
+    private FloatingActionButton fabAdd;
     private static final int REQ_EDIT = 100;
 
     @Override
@@ -34,15 +37,17 @@ public class MainActivity extends AppCompatActivity implements AdapterView.OnIte
 
         lista = findViewById(R.id.lista);
 
-        adapter = new ProdutoAdapter(this);
-
+        adapter = new ItemAdapter(this);
+        fabAdd = findViewById(R.id.action_add);
+        fabAdd.setOnClickListener(this);
         lista.setAdapter(adapter);
 
         lista.setOnItemClickListener(this);
         lista.setOnItemLongClickListener(this);
 
-        produtoDAO = ProdutoDAO.getInstance(this);
+        itemDAO = ItemDAO.getInstance(this);
 
+        updateList();
     }
 
     @Override
@@ -53,11 +58,7 @@ public class MainActivity extends AppCompatActivity implements AdapterView.OnIte
 
     @Override
     public boolean onOptionsItemSelected(@NonNull MenuItem item) {
-        if (item.getItemId() == R.id.action_add) {
-            Intent intent = new Intent(getApplicationContext(), EditarProdutoActivity.class);
-            startActivityForResult(intent, REQ_EDIT);
-            return true;
-        }
+
         return super.onOptionsItemSelected(item);
     }
 
@@ -70,30 +71,36 @@ public class MainActivity extends AppCompatActivity implements AdapterView.OnIte
     }
 
     private void updateList() {
-        List<Produto> produtos = produtoDAO.list();
-        adapter.setItems(produtos);
+        List<Item> items = itemDAO.list();
+        adapter.setItens(items);
     }
 
     @Override
     public void onItemClick(AdapterView<?> adapterView, View view, int i, long l) {
-        Intent intent = new Intent(getApplicationContext(), EditarProdutoActivity.class);
-        intent.putExtra("produto", adapter.getItem(i));
+        Intent intent = new Intent(getApplicationContext(), ItemActivity.class);
+        intent.putExtra("item", adapter.getItem(i));
         startActivityForResult(intent, REQ_EDIT);
     }
 
     @Override
     public boolean onItemLongClick(AdapterView<?> adapterView, View view, int i, long l) {
-        Produto produto = adapter.getItem(i);
+        Item item = adapter.getItem(i);
 
         DeleteDialog dialog = new DeleteDialog();
-        dialog.setProduto(produto);
+        dialog.setItem(item);
         dialog.show(getSupportFragmentManager(), "deleteDialog");
         return true;
     }
 
     @Override
-    public void onDelete(Produto produto) {
-        produtoDAO.delete(produto);
+    public void onDelete(Item item) {
+        itemDAO.delete(item);
         updateList();
+    }
+
+    @Override
+    public void onClick(View view) {
+        Intent intent = new Intent(getApplicationContext(), ItemActivity.class);
+        startActivityForResult(intent, REQ_EDIT);
     }
 }
