@@ -12,6 +12,11 @@
     <string name="desenvolvedora">"Desenvolvedora: "</string>
     <string name="nome_dev">Caroline Vitória</string>
     <string name="dev">Desenvolvedora</string>
+    <string name="direitos">Todos os direitos reservados.</string>
+    <string name="curso">Estudante de Tecnologia em Análise e Desenvolvimento de Sistemas</string>
+    <string name="idade">20 anos</string>
+    <string name="sobre_app">Este aplicativo é o Trabalho Final da disciplina de Desenvolvimento para Dispositivos Móveis.</string>
+    <string name="version">7.1.3</string>
     <string-array name="cores">
         <item>Vermelho</item>
         <item>Laranja</item>

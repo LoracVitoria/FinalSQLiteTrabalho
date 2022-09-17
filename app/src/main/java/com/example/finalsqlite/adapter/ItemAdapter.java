@@ -1,10 +1,12 @@
 package com.example.finalsqlite.adapter;
 
 import android.content.Context;
+import android.graphics.Color;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.BaseAdapter;
+import android.widget.ImageView;
 import android.widget.TextView;
 
 import com.example.finalsqlite.R;
@@ -17,7 +19,7 @@ import java.util.Locale;
 
 public class ItemAdapter extends BaseAdapter {
     private Context context;
-    private static final NumberFormat nf = NumberFormat.getCurrencyInstance(new Locale("PT","BR"));
+//    private static final NumberFormat nf = NumberFormat.getCurrencyInstance(new Locale("PT","BR"));
     private List<Item> itens = new ArrayList<>();
 
     public ItemAdapter(Context context) {
@@ -46,12 +48,11 @@ public class ItemAdapter extends BaseAdapter {
         TextView txtTitulo = v.findViewById(R.id.txt_titulo);
         TextView txtPrioridade = v.findViewById(R.id.txt_prioridade);
         TextView txtDescricao = v.findViewById(R.id.txt_descricao);
-        TextView txtCor = v.findViewById(R.id.txt_cor);
-
+        TextView txtCor = v.findViewById(R.id.cor);
 
         Item item = itens.get(i);
         txtTitulo.setText(item.getTitulo());
-        txtPrioridade.setText(nf.format(item.getPrioridade()));
+        txtPrioridade.setText(item.getPrioridade().toString());
         txtDescricao.setText(item.getDescricao());
         txtCor.setText(item.getCor());
 

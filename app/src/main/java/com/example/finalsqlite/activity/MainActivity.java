@@ -5,11 +5,13 @@ import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.content.Intent;
+import android.graphics.Color;
 import android.os.Bundle;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.AdapterView;
+import android.widget.ImageView;
 import android.widget.ListView;
 
 import com.example.finalsqlite.R;
@@ -40,6 +42,9 @@ public class MainActivity extends AppCompatActivity implements AdapterView.OnIte
         adapter = new ItemAdapter(this);
         fabAdd = findViewById(R.id.action_add);
         fabAdd.setOnClickListener(this);
+        ImageView txtCor = findViewById(R.id.cor);
+
+
         lista.setAdapter(adapter);
 
         lista.setOnItemClickListener(this);
@@ -58,7 +63,8 @@ public class MainActivity extends AppCompatActivity implements AdapterView.OnIte
 
     @Override
     public boolean onOptionsItemSelected(@NonNull MenuItem item) {
-
+        Intent intent = new Intent(getApplicationContext(), SobreActivity.class);
+        startActivity(intent);
         return super.onOptionsItemSelected(item);
     }
 

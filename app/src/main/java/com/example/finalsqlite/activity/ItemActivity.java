@@ -1,11 +1,13 @@
 package com.example.finalsqlite.activity;
 
+import android.graphics.Color;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.ImageView;
 import android.widget.Spinner;
 import android.widget.Toast;
 
@@ -27,7 +29,6 @@ public class ItemActivity extends AppCompatActivity implements View.OnClickListe
     private Button btnCancelar;
     private Item item;
     private ItemDAO itemDAO;                    //red   laranja     amarelo       verde       azul    roxo
-    private List<String> cores = Arrays.asList("#f33634", "#fe9134", "#f0e801", "#3a9140", "#0048ff", "#7c109a");
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -80,6 +81,8 @@ public class ItemActivity extends AppCompatActivity implements View.OnClickListe
                 item.setPrioridade(prioridade);
                 item.setDescricao(descricao);
                 item.setCor(cor);
+
+
 
                 itemDAO.update(item);
                 msg = "Item atualizado com ID = " + item.getId();
